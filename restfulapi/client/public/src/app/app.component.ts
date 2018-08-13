@@ -12,22 +12,40 @@ import { HttpService } from "./http.service";
 })
 export class AppComponent implements OnInit {
   title = 'MEAN';
-  num: number;
-  first_name: string;
   tasks = [];
+  single = false;
+  onetask;
   constructor(private _httpService: HttpService) {}
   
   ngOnInit(){
-    this.getTasksFromService();
-    this.num = 7;
-    this.first_name = "Alpha";
+    
   }
 
-  getTasksFromService(){
+  onButtonClick(): void {
+    this.getTasksFromService();
+  }
+
+  getSingle(id): void{
+    this._httpService.getTask(id, data => {
+      console.log(data);
+      this.onetask = data;
+      this.single = true;
+    })
+  }
+
+  onKey(event:any){
+    let x = this.tasks.find(element => {
+      return element.num == event.target.value;
+    })
+    this.getSingle(x.task._id);
+  }
+
+  getTasksFromService(): void{
     let observable = this._httpService.getTasks();
     observable.subscribe(data => {
-      console.log("Got our tasks", data);
-      this.tasks = data['tasks'];
+      for (let i = 0; i < data['tasks'].length; i++){
+        this.tasks[i] = {num:i+1, task:data['tasks'][i]};
+      }
       console.log(this.tasks);
     })
   }

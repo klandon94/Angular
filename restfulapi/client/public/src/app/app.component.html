@@ -18,12 +18,24 @@
   </li>
 </ul> -->
 <h2>Restful Tasks API</h2>
-<h2>All the tasks:</h2>
+<h2>Get all of the tasks!</h2>
+
+<button (click) = "onButtonClick()"> Get tasks </button><br><br>
+
+<input type="text" (keyup) = "onKey($event)" placeholder="Task #">
+
 <ul>
-  <li *ngFor="let task of tasks">{{task.title}}</li>
+  <li *ngFor="let i of tasks">{{i.task.title}}     <button (click) = "getSingle(i.task._id)">Show</button></li>
 </ul>
-<h2>Third task</h2>
+
+<div *ngIf="single">
+  <h3>{{onetask.title}}</h3>
+  <h3>{{onetask.desc}}</h3>
+  <h4>Completed: {{onetask.completed}}</h4>
+</div>
+
+<!-- <h2>Third task</h2>
 <ul>
   <li>{{tasks[2].title}}</li>
-</ul>
+</ul> -->
 
