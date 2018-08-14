@@ -1,0 +1,15 @@
+<div *ngIf="weather" id="container">
+  <h1>{{weather.name}}</h1>
+  <div id="weather">
+    <div id="info">
+      <p>Humidity: {{weather.main.humidity}}</p>
+      <p>Temperature(Average): {{weather.main.temp * (9/5) - 459.67}}°F</p>
+      <p>Temperature(High): {{weather.main.temp_max * (9/5) - 459.67}}°F</p>
+      <p>Temperature(Low): {{weather.main.temp_min * (9/5) - 459.67}}°F</p>
+      <p>Status: {{weather.weather[0].description}}</p>
+    </div>
+    <div id="pic">
+      <img src="../../assets/dc.jpg" height="200" width="300">
+    </div>
+  </div>
+</div>

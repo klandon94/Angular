@@ -1,0 +1,16 @@
+h1{
+    text-align:center;
+}
+
+.taskbox, .buttons{
+    display:flex;
+    justify-content:space-around;
+}
+
+.task{
+    border:5px solid green;
+}
+
+#create{
+    margin-bottom:150px;
+}
