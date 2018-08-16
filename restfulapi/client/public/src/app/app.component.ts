@@ -10,23 +10,24 @@ import { HttpService } from "./http.service";
 export class AppComponent implements OnInit {
   title = 'MEAN';
   tasks = [];
-  selectedTask: any;
+  errors = [];
 
+  // selectedTask: any;
   // single = false;
   // onetask;
 
-  // onedit : any;
-  // identifier: any;
-  // newTask: any;
-  // editTask: any;
+  onedit : any;
+  identifier: any;
+  newTask: any;
+  editTask: any;
 
   constructor(private _httpService: HttpService) {}
   
   ngOnInit(){
-    // this.getTasksFromService();
-    // this.onedit = false;
-    // this.newTask = {title:"", desc:""}
-    // this.editTask = {title: "", desc:"", completed:""}
+    this.getTasksFromService();
+    this.onedit = false;
+    this.newTask = {title:"", desc:""}
+    this.editTask = {title: "", desc:"", completed:""}
   }
 
   // getSingle(id){
@@ -55,43 +56,48 @@ export class AppComponent implements OnInit {
     })
   }
 
-  getTask(task){
-    this.selectedTask = task;
+  // getTask(task){
+  //   this.selectedTask = task;
+  // }
+
+  createTask():void{
+    let observable = this._httpService.create(this.newTask);
+    observable.subscribe(data=>{
+      if (data['errors']) {
+        console.log(data['errors']['title'].message);
+        this.errors.push(data['errors']['title'].message);
+        return;
+      }
+      console.log("successfully created a task");
+      this.newTask = {title:"", desc:""};
+      this.getTasksFromService();
+    })
   }
 
-  // createTask():void{
-  //   let observable = this._httpService.create(this.newTask);
-  //   observable.subscribe(data=>{
-  //     console.log(data);
-  //     this.newTask = {title:"", desc:""};
-  //     this.getTasksFromService();
-  //   })
-  // }
+  showEdit(id){
+    this._httpService.find(id).subscribe(data=>{
+      console.log(data);
+      this.identifier = data['_id'];
+      this.onedit = true;
+      this.editTask = {title:data['title'], desc:data['desc'], completed:data['completed']};
+    })
+  }
 
-  // showEdit(id){
-  //   this._httpService.find(id).subscribe(data=>{
-  //     console.log(data);
-  //     this.identifier = data['_id'];
-  //     this.onedit = true;
-  //     this.editTask = {title:data['title'], desc:data['desc'], completed:data['completed']};
-  //   })
-  // }
+  edit(id){
+    this._httpService.edit(id, this.editTask).subscribe(data=>{
+      console.log("successfully edited task");
+      this.onedit = false;
+      this.editTask = {title:"", desc:"", completed:""}
+      this.getTasksFromService();
+    })
+  }
 
-  // edit(id){
-  //   this._httpService.edit(id, this.editTask).subscribe(data=>{
-  //     console.log("successfully edited task");
-  //     this.onedit = false;
-  //     this.editTask = {title:"", desc:"", completed:""}
-  //     this.getTasksFromService();
-  //   })
-  // }
-
-  // delete(id){
-  //   this._httpService.delete(id).subscribe(data=>{
-  //     console.log("successfully deleted task");
-  //     this.getTasksFromService();
-  //   })
-  // }
+  delete(id){
+    this._httpService.delete(id).subscribe(data=>{
+      console.log("successfully deleted task");
+      this.getTasksFromService();
+    })
+  }
 
   // this._httpService.getPokemon(1, data=>{
   //   console.log(data)

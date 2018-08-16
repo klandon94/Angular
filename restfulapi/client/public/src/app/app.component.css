@@ -14,3 +14,8 @@ h1{
 #create{
     margin-bottom:150px;
 }
+
+.error{
+    color:red;
+    font-weight:bold;
+}

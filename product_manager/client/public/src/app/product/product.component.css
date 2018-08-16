@@ -1,0 +1,16 @@
+.box{
+    border:10px dotted blue;
+    text-align: center;
+    width:25%;
+    display:inline-block;
+    margin: 0 0 25px 200px;
+}
+
+img{
+    height:250px;
+    width:250px;
+}
+
+a{
+    margin-right:25px;
+}

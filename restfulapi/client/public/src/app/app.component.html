@@ -6,9 +6,9 @@
   <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
 </div>
 
-<!-- <h1>Restful Tasks API</h1>
+<h1>Restful Tasks API</h1>
 <h2>All tasks</h2>
-<button (click) = "showTasks()">Show all tasks</button>
+<!-- <button (click) = "showTasks()">Show all tasks</button> -->
 
 <div *ngFor="let x of tasks">
   <div class="taskbox">
@@ -41,18 +41,21 @@
     <h2>Create task</h2>
     <form (submit)="createTask()">
       <p>{{newTask | json}}</p>
+      <div *ngIf="errors">
+        <p *ngFor="let error of errors" class="error">{{error}}</p>
+      </div>
       <label for="title">Title:</label>
       <input type="text" name="newTask.title" [(ngModel)]="newTask.title">
       <label for="desc">Description:</label>
       <input type="text" name="newTask.desc" [(ngModel)]="newTask.desc">
       <input type="submit" value="Create task">
     </form>
-</div> -->
+</div>
 
 
-<button (click) = "getTasksFromService()"> Get tasks </button><br><br>
+<!-- <button (click) = "getTasksFromService()"> Get tasks </button><br><br>
 
-<!-- <input type="text" (keyup) = "onKey($event)" placeholder="Task #"> -->
+<input type="text" (keyup) = "onKey($event)" placeholder="Task #">
 
 <app-task *ngIf="selectedTask" [taskToShow]="selectedTask"></app-task>
 
@@ -60,13 +63,14 @@
   <li *ngFor="let i of tasks">{{i.title}}     <button (click)= "getTask(i)">Show</button></li>
 </ul>
 
-<!-- <div *ngIf="single">
+<div *ngIf="single">
   <h3>{{onetask.title}}</h3>
   <h3>{{onetask.desc}}</h3>
   <h4>Completed: {{onetask.completed}}</h4>
-</div> -->
+</div>
 
-<app-task *ngIf="selectedTask" [taskToShow]="selectedTask"></app-task>
+<app-task *ngIf="selectedTask" [taskToShow]="selectedTask"></app-task> -->
+
 
 <!-- <h2>Third task</h2>
 <ul>

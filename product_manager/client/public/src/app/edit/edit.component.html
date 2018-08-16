@@ -1,0 +1,25 @@
+<div *ngIf="product">
+<h1>Edit product: {{product.title}}</h1>
+
+<form (submit) = "updateProduct(product._id)">
+  <p>{{editProduct | json}}</p>
+  <div *ngIf="errors">
+    <p *ngFor="let error of errors" class="error">{{error}}</p>
+  </div>
+  <div>
+    <label for="">Title:</label>
+    <input type="text" name="editProduct.title" [(ngModel)]="editProduct.title" value="{{product.title}}"/>
+  </div><br>
+  <div>
+    <label for="">Price:</label>
+    <input type="text" name="editProduct.price" [(ngModel)]="editProduct.price" value="{{product.price}}"/>
+  </div><br>
+  <div>
+    <label for="">Image:</label>
+    <input type="text" name="editProduct.image" [(ngModel)]="editProduct.image" value="{{product.image}}"/>
+  </div><br>
+  <input type="submit" value="Update"/>
+  <button (click)="goToProducts()">Cancel</button>
+</form>
+<button (click)="removeProduct(product._id)">Delete</button>
+</div>

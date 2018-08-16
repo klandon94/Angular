@@ -1,0 +1,23 @@
+
+<h1>Create new product:</h1>
+
+<form (submit) = "create()" name="thisForm">
+  <p>{{newProduct | json}}</p>
+  <div *ngIf="errors">
+    <p *ngFor="let error of errors" class="error">{{error}}</p>
+  </div>
+  <div>
+    <label for="">Title:</label>
+    <input type="text" name="newProduct.title" [(ngModel)]="newProduct.title"/>
+  </div><br>
+  <div>
+    <label for="">Price:</label>
+    <input type="text" name="newProduct.price" [(ngModel)]="newProduct.price" />
+  </div><br>
+  <div>
+    <label for="">Image:</label>
+    <input type="text" name="newProduct.image" [(ngModel)]="newProduct.image" />
+  </div><br>
+  <input type="submit" value="Create"/>
+  <button (click)="goToProducts()">Cancel</button>
+</form>

@@ -1,0 +1,7 @@
+<div class="box">
+  <img src="{{product.image}}">
+  <h2>{{product.title}}</h2>
+  <h3>Price: ${{product.price}}</h3>
+  <a [routerLink] = "['/products', 'edit', product._id]">Edit</a>
+  <button (click)="deleteProduct(product._id)">Delete</button>
+</div>
