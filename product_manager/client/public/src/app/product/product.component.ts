@@ -9,7 +9,7 @@ import { ProductService } from '../product.service';
 export class ProductComponent implements OnInit {
 
   @Input() product;
-  @Output() taskEmitter = new EventEmitter();
+  @Output() productEmitter = new EventEmitter();
 
   constructor(private ps: ProductService) { }
 
@@ -18,7 +18,7 @@ export class ProductComponent implements OnInit {
 
   deleteProduct(id){
     this.ps.deleteProduct(id).subscribe(data=>{
-      this.taskEmitter.emit();
+      this.productEmitter.emit();
     });
   }
 

@@ -1,5 +1,5 @@
 <router-outlet></router-outlet>
 <h1>All products</h1>
 <div *ngIf="products" id="allprods">
-  <app-product *ngFor="let prod of products" [product]="prod" (taskEmitter) = "getProductsFromService()"></app-product>
+  <app-product *ngFor="let prod of products" [product]="prod" (productEmitter) = "getProductsFromService()"></app-product>
 </div>

@@ -2,7 +2,7 @@
 <h1>Create new product:</h1>
 
 <form (submit) = "create()" name="thisForm">
-  <p>{{newProduct | json}}</p>
+  <p>New product to be submitted: {{newProduct | json}}</p>
   <div *ngIf="errors">
     <p *ngFor="let error of errors" class="error">{{error}}</p>
   </div>

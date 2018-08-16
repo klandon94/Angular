@@ -1,0 +1,7 @@
+<NewNoteComponent (noteEmitter)="addNote($event)"></NewNoteComponent>
+
+<div class="notes">
+  <NoteComponent *ngFor="let note of notes" [currentNote]="note"></NoteComponent>
+</div>
+
+

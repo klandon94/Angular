@@ -1,0 +1,10 @@
+<form (submit)="create()" class="form-horizontal">
+  <p>{{newNote | json}}</p>
+  <div *ngIf="errors">
+    <p *ngFor="let error of errors" class="error">{{error}}</p>
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Content" [(ngModel)] = "newNote.content" name="newNote.content">
+  </div>
+  <input type="submit" class="btn btn-primary">
+</form>
