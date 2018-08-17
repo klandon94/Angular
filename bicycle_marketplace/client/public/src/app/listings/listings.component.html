@@ -1,0 +1,3 @@
+<input (keyup)="keyPress()" type="text" name="searchText" [(ngModel)]="searchText" >
+
+<app-listing (emitter)="destroy($event)" *ngFor="let listing of listings | search: searchText" [listing]="listing" ></app-listing>
